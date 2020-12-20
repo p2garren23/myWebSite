@@ -1,0 +1,86 @@
+<html>
+<head> 
+<script language="JavaScript">
+
+var partsOfSpeech = ["Please enter an adjective", "Please enter an object", "Please enter a noun", "Please enter a verb", "Please enter a food", "Please enter a name"];
+var answers = new Array(partsOfSpeech.length);
+var story = [" Dear Stanta, Christmas is coming up! Am I on the", "list? I can't wait to find a(n)", "under the tree. All my friends are asking for a", ". Don't forget to", "through the chimney when you get here.", "I have plenty of", "and milk for you. Sincerely," ];
+var count = 0;
+
+function prompt()
+{
+        	// if this is the start, display the textbox and hide the story. 
+	// then display the first element of partsOfSpeech in the textbox. 
+        
+    document.getElementById("userEnter").style.visibility = "visible";
+    document.getElementById("story").style.visibility = "hidden";
+    document.getElementById("response").value = partsOfSpeech[count];
+
+
+}
+
+
+function getWords()
+{
+ //alert "Hello"
+    var wordBox = document.getElementById("response")
+    answers[count] = wordBox.value;
+    
+    count++;
+    if(count < partsOfSpeech.length) //there's another prompt coming
+    {
+        prompt();
+    }
+    else
+    {
+        count = 0;
+        document.getElementById("story").innerHTML. = displayStory();
+    }    
+    
+}
+
+function displayStory()
+{
+	var answer = "";
+	var i;
+	
+	// loop to stitch elements of story with elements of answers. 
+	
+	for ( i = 0; i< answers.length; i++)
+	{
+	
+        answer = answer + story[i];
+        answer = answer + answers[i];
+                                
+	}
+	// if there's one more element in story than answers, then add the last element of answers
+
+
+    // Make the story div visible, and the userEnter div hidden.		  
+    document.getElementById("userEnter").style.visibility = "hidden";
+    document.getElementById("story").style.visibility = "visible";
+
+   
+	// return the variable answer.
+    return answer;
+    
+}
+
+</script>
+</head>
+<body>
+<center> 
+<h1>My MadLib!</h1>
+    <h3>Return to <a href ="index.html">Home </a></h3>
+<input id="daButton" type="button" value="start" onClick="prompt()"/>
+</center>
+<div id="userEnter" style="position:absolute; left:200; top: 100; visibility:hidden;">
+<input type = "text" id="response" value="" onfocusout="getWords()"/></p>
+</div>
+
+<div id="story" style="position:absolute; overflow:scroll; top:300; left:200; width:400; height: 200; visibility:hidden">
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+</div>
+
+</body>
+</html>
